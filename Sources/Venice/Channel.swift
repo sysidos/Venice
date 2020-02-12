@@ -1,7 +1,11 @@
-#if os(Linux)
-    import Glibc
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+  import Darwin.C
+#elseif os(Linux) || os(FreeBSD) || os(PS4) || os(Android) || os(Cygwin) || os(Haiku)
+  import Glibc
+#elseif os(Windows)
+  import MSVCRT
 #else
-    import Darwin.C
+  #error("Unsupported platform")
 #endif
 
 import CLibdill
